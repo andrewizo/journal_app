@@ -1,16 +1,36 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>JournalApp</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<head>
+  <title>Your Journal App</title>
+  <!-- Add your stylesheets and other head content here -->
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <%= javascript_include_tag 'application' %>
 
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
-  </head>
+</head>
+<body>
 
-  <body>
-    <%= yield %>
-  </body>
+<header>
+  <h1>Your Journal App</h1>
+</header>
+
+<nav>
+  <% if logged_in? %>
+    <%= link_to 'Dashboard', root_path %>
+    <%= button_to 'Logout', logout_path, method: :delete %>
+  <% else %>
+    <%= link_to 'Login', login_path %>
+    <%= link_to 'Sign Up', signup_path %>
+  <% end %>
+</nav>
+
+<main>
+  <%= yield %>
+</main>
+
+<footer>
+  <p>&copy; <%= Time.now.year %> Your Journal App. All rights reserved.</p>
+</footer>
+
+</body>
 </html>
