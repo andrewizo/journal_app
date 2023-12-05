@@ -1,7 +1,7 @@
 class DashboardController < ApplicationController
-  before_action :require_login  # Ensure the user is logged in before accessing the dashboard
+  before_action :require_login
 
   def index
-    # Your dashboard logic goes here
+    @categories = Category.all
   end
 end
