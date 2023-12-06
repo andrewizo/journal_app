@@ -1,11 +1,30 @@
+<!-- app/views/sessions/new.html.erb -->
 <h1>Login</h1>
 
-<%= form_with(url: login_path, method: :post) do |form| %>
-  <%= form.label :email %>
-  <%= form.email_field :email, required: true %>
+<%= form_tag(login_path, method: :post) do %>
+  <% if @user&.errors&.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, 'error') %> prohibited this user from being logged in:</h2>
 
-  <%= form.label :password %>
-  <%= form.password_field :password, required: true %>
+      <ul>
+        <% @user.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
 
-  <%= form.submit 'Login' %>
+  <div class="field">
+    <%= label_tag 'user[email]', 'Email' %>
+    <%= email_field_tag 'user[email]', nil, required: true %>
+  </div>
+
+  <div class="field">
+    <%= label_tag 'user[password]', 'Password' %>
+    <%= password_field_tag 'user[password]', nil, required: true %>
+  </div>
+
+  <div class="actions">
+    <%= submit_tag 'Login' %>
+  </div>
 <% end %>
