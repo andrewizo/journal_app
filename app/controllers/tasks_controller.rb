@@ -2,7 +2,11 @@
 class TasksController < ApplicationController
     before_action :find_category
     before_action :find_task, only: [:edit, :update, :destroy]
-  
+    
+    def index
+      @tasks = current_user.tasks
+    end
+    
     def create
       @task = @category.tasks.build(task_params)
       if @task.save
@@ -34,8 +38,8 @@ class TasksController < ApplicationController
     private
   
     def find_task
-      @task = @category.tasks.find(params[:id])
-    end
+      @task = current_user.tasks.find(params[:id])
+    end    
   
     def find_category
       @category = Category.find(params[:category_id])

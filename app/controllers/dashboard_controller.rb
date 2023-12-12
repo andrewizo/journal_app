@@ -2,6 +2,8 @@ class DashboardController < ApplicationController
   before_action :require_login
 
   def index
-    @categories = Category.all
-  end
+    @tasks = current_user.tasks
+    @categories = current_user.categories
+    # Other dashboard-related data
+  end  
 end
