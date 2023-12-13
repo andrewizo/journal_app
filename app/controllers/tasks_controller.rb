@@ -1,10 +1,9 @@
-# app/controllers/tasks_controller.rb
 class TasksController < ApplicationController
     before_action :find_category
     before_action :find_task, only: [:edit, :update, :destroy]
     
     def index
-      @tasks = current_user.tasks
+      @tasks_due_today = current_user.tasks.due_today
     end
     
     def create
@@ -17,7 +16,7 @@ class TasksController < ApplicationController
     end
   
     def edit
-      # find_task is already called via the before_action
+     
     end
   
     def update
@@ -38,13 +37,14 @@ class TasksController < ApplicationController
     private
   
     def find_task
-      @task = current_user.tasks.find(params[:id])
-    end    
+      # Find the task within the current category and associated with the current user
+      @task = @category.tasks.find(params[:id])
+    end
   
     def find_category
       @category = Category.find(params[:category_id])
     end
-  
+    
     def task_params
       params.require(:task).permit(:title, :description, :due_date)
     end

@@ -3,33 +3,35 @@
 
 <%= link_to 'Back', categories_path %>
 
-<h2>New Task</h2>
-<%= form_for [@category, Task.new], url: category_tasks_path(@category) do |f| %>
-  <%= render 'shared/errors', object: f.object %>
+<div class="task-form">
+  <h2>New Task</h2>
+  <%= form_for [@category, Task.new], url: category_tasks_path(@category) do |f| %>
+    <%= render 'shared/errors', object: f.object %>
 
-  <div class="field">
-    <%= f.label :title %>
-    <%= f.text_field :title %>
-  </div>
+    <div class="field">
+      <%= f.label :title %>
+      <%= f.text_field :title %>
+    </div>
 
-  <div class="field">
-    <%= f.label :description %>
-    <%= f.text_area :description %>
-  </div>
+    <div class="field">
+      <%= f.label :description %>
+      <%= f.text_area :description %>
+    </div>
 
-  <div class="field">
-    <%= f.label :due_date %>
-    <%= f.date_field :due_date %>
-  </div>
+    <div class="field">
+      <%= f.label :due_date %>
+      <%= f.date_field :due_date %>
+    </div>
 
-  <%= f.submit 'Create Task' %>
-<% end %>
+    <%= f.submit 'Create Task', class: 'submit-btn' %>
+  <% end %>
+</div>
 
 <h2>Tasks</h2>
 <ul>
   <% @category.tasks.each do |task| %>
     <li>
-      <%= task.title %> - <%= task.description %> - <%= task.due_date %>
+      <%= task.title %> - <%= task.description %> - <%= task.due_date.strftime('%B %e, %Y') %>
       <%= link_to 'Edit', edit_category_task_path(@category, task), class: 'btn btn-warning btn-sm' %>
       <%= button_to 'Delete', category_task_path(@category, task), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm' %>
     </li>

@@ -23,21 +23,25 @@
 
 <header>
   <div class="container">
-    <h1>Your Journal App</h1>
+    <h1>Journalist</h1>
   </div>
 </header>
 
 <nav>
-  <div class="container">
-    <% if logged_in? %>
-      <%= link_to 'Dashboard', root_path %>
-      <%= button_to 'Logout', logout_path, method: :delete %>
-    <% else %>
-      <%= link_to 'Login', login_path %>
-      <%= link_to 'Sign Up', signup_path %>
-    <% end %>
+  <div class="navbar-container">
+    <div class="navbar-left">
+      <%= link_to 'Dashboard', root_path, class: 'dashboard-link' %>
+      <%= link_to 'Categories', categories_path %>
+    </div>
+    <div class="navbar-right">
+      <% if logged_in? %>
+        <%= button_to 'Logout', logout_path, method: :delete, class: 'btn btn-danger btn-sm' %>
+      <% end %>
+    </div>
   </div>
 </nav>
+
+
 
 <main>
   <div class="container">
