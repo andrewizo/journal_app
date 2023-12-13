@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-    include SessionsHelper  # Make sure this line is present
+    include SessionsHelper
   
     private
   

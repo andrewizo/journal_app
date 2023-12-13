@@ -1,4 +1,3 @@
-# app/controllers/categories_controller.rb
 class CategoriesController < ApplicationController
   before_action :set_category, only: [:show, :edit, :update, :destroy]
 
@@ -11,7 +10,7 @@ class CategoriesController < ApplicationController
   end
   
   def show
-    # You already have @category set by the before_action
+    
   end
 
   def new
@@ -29,7 +28,7 @@ class CategoriesController < ApplicationController
   end
 
   def edit
-    # You already have @category set by the before_action
+    
   end
 
   def update

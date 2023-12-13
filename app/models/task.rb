@@ -1,5 +1,3 @@
-# app/models/task.rb
-
 class Task < ApplicationRecord
   belongs_to :category
 

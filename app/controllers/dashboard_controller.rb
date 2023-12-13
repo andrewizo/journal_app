@@ -1,4 +1,3 @@
-# app/controllers/dashboard_controller.rb
 class DashboardController < ApplicationController
   before_action :require_login
 
@@ -7,7 +6,6 @@ class DashboardController < ApplicationController
     @categories = current_user.categories
     @tasks_due_today_by_category = {}
 
-    # Debugging statement
     puts "Current date: #{Date.today}"
 
     @categories.each do |category|

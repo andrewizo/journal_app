@@ -20,7 +20,6 @@ class TasksController < ApplicationController
     end
   
     def update
-      # find_task is already called via the before_action
       if @task.update(task_params)
         redirect_to category_path(@category), notice: 'Task updated successfully.'
       else
@@ -29,7 +28,6 @@ class TasksController < ApplicationController
     end
   
     def destroy
-      # find_task is already called via the before_action
       @task.destroy
       redirect_to category_path(@category), notice: 'Task deleted successfully.'
     end
@@ -37,7 +35,6 @@ class TasksController < ApplicationController
     private
   
     def find_task
-      # Find the task within the current category and associated with the current user
       @task = @category.tasks.find(params[:id])
     end
   

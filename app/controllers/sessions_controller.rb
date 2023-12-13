@@ -1,7 +1,6 @@
 class SessionsController < ApplicationController
   def create
     user_params = params.require(:user).permit(:email, :password)
-
     user = User.find_by(email: user_params[:email])
 
     if user && user.authenticate(user_params[:password])
@@ -9,7 +8,7 @@ class SessionsController < ApplicationController
       redirect_to root_path, notice: 'Login successful!'
     else
       @user = User.new(email: user_params[:email])
-      @user.errors.add(:base, 'Invalid email or password') # Add an error message
+      @user.errors.add(:base, 'Invalid email or password') 
       flash.now[:alert] = 'Invalid email or password'
       render :new
     end
